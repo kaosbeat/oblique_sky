@@ -7,16 +7,16 @@ boolean saved = false;
 Cloud[] cloudysky = new Cloud[127];
 RFont font;
 float counter = 0;
-int fontsize = 50;
+int fontsize = 20;
 
 
 
 void setup() {
-    frameRate(10);
+    frameRate(1);
    String[] ob = new String[127];
    populateob(ob);
    println();
-   size(9600,800,P3D);
+   size(960,300,P3D);
    background(255);
    smooth();
     
@@ -29,7 +29,8 @@ void setup() {
   fill(0);
   //cloudysky[0] = new Cloud(30,40,ob[int(random(0,127))] );
   for (int i=0;i<10;i++) {
-   cloudysky[i] = new Cloud(fontsize+int(random(0,127))-width/2,i*fontsize-height/2,10*i, ob[int(random(0,127))] ); 
+   float fontscale = random(0,1)*fontsize;
+   cloudysky[i] = new Cloud(i*fontsize+int(random(0,127))-width/2,i*fontsize-height/2,0.1*i, fontscale, ob[int(random(0,127))] ); 
   }
   
 }

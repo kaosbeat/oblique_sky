@@ -2,16 +2,18 @@ class Cloud{
   int x;
   int y;
   float r;
+  float fontscale;
   String word;
   float currentmeshpointX;
   float currentmeshpointY;
   
-  Cloud(int x, int y, float r, String word){
+  Cloud(int x, int y, float r, float fontscale,String word){
     this.x = x;
     this.y = y;
     this.word = word;
     stroke(0);
     this.r = r;
+    this.fontscale = fontscale;
 
   }
   
@@ -21,7 +23,9 @@ class Cloud{
     RCommand.setSegmentLength(15);
     RGroup grp = font.toGroup(word);
     grp.translate(x,y);
-    grp.rotate(0.05);
+    grp.scale(fontscale);
+    grp.rotate(r);
+    
     RShape grpshape = grp.toShape();    
     grp = grp.toPolygonGroup();  
     RPoint[] clouddust = grp.getPoints();
@@ -67,6 +71,6 @@ class Cloud{
    // for (int i=0; i < clouddust.length; i++) {
      // ellipse(clouddust[i].x, clouddust[i].y,5, 5);      
   //  }
-    grpshape.draw();
+
   }
 }
