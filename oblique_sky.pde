@@ -7,7 +7,7 @@ boolean saved = false;
 Cloud[] cloudysky = new Cloud[127];
 RFont font;
 float counter = 0;
-int fontsize = 20;
+int fontsize = 50;
 
 
 
@@ -16,7 +16,7 @@ void setup() {
    String[] ob = new String[127];
    populateob(ob);
    println();
-   size(960,200,P3D);
+   size(9600,800,P3D);
    background(255);
    smooth();
     
@@ -27,15 +27,21 @@ void setup() {
    
   noStroke();
   fill(0);
-  cloudysky[0] = new Cloud(30,40,ob[int(random(0,127))] );
+  //cloudysky[0] = new Cloud(30,40,ob[int(random(0,127))] );
+  for (int i=0;i<10;i++) {
+   cloudysky[i] = new Cloud(fontsize+int(random(0,127))-width/2,i*fontsize-height/2,10*i, ob[int(random(0,127))] ); 
+  }
+  
 }
 
 
 
 void draw() {
-    background(255);
+    background(0);
     translate(width/2-10,height/2+30);
-    cloudysky[0].render();
+    for (int i=0;i<10;i++) {
+      cloudysky[i].render();
+    }
     if (saved == false) { 
     Date d = new Date();
     save("obliquesky"+d.getTime()+".png");
