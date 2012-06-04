@@ -7,12 +7,12 @@ boolean saved = false;
 Cloud[] cloudysky = new Cloud[127];
 RFont font;
 float counter = 0;
-int fontsize = 50;
+int fontsize = 20;
 
 
 
 void setup() {
-    frameRate(1);
+    frameRate(10);
    String[] ob = new String[127];
    populateob(ob);
    println();
@@ -23,7 +23,7 @@ void setup() {
   RG.init(this);
   font = new RFont("altehaasgroteskregular-webfont.ttf");
   font.setSize(fontsize);
-  font.setAlign(RFont.CENTER);
+  font.setAlign(RFont.LEFT);
    
   noStroke();
   fill(0);
