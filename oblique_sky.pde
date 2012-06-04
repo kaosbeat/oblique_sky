@@ -1,14 +1,15 @@
 import geomerative.*;
 import org.apache.batik.svggen.font.table.*;
 import org.apache.batik.svggen.font.*;
- 
+boolean saved = false;
+
 RFont font;
 float counter = 0;
 
 
 
 void setup() {
-   size(960,200,P2D);
+   size(960,300,P2D);
    background(255);
    smooth();
     
@@ -43,5 +44,11 @@ void draw() {
    
       ellipse(punkte[i].x, punkte[i].y+offsetY, 4, 4);
     }
+    if (saved == false) { 
+    Date d = new Date();
+    save("obliquesky"+d.getTime()+".png");
+    saved = true;  
+    } 
+    
     
 }
