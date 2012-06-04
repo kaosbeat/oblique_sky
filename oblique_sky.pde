@@ -16,7 +16,7 @@ void setup() {
    String[] ob = new String[127];
    populateob(ob);
    println();
-   size(960,200,P2D);
+   size(960,200,P3D);
    background(255);
    smooth();
     
