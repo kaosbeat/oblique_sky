@@ -12,7 +12,7 @@ int fontsize = 20;
 
 
 void setup() {
-    frameRate(1);
+    frameRate(10);
    String[] ob = new String[127];
    populateob(ob);
    println();
@@ -29,7 +29,8 @@ void setup() {
   fill(0);
   //cloudysky[0] = new Cloud(30,40,ob[int(random(0,127))] );
   for (int i=0;i<10;i++) {
-   float fontscale = random(0,1)*fontsize;
+   float fontscale = random(0,1)*fontsize/10;
+   fontscale = 1;
    cloudysky[i] = new Cloud(i*fontsize+int(random(0,127))-width/2,i*fontsize-height/2,0.1*i, fontscale, ob[int(random(0,127))] ); 
   }
   

@@ -6,6 +6,8 @@ class Cloud{
   String word;
   float currentmeshpointX;
   float currentmeshpointY;
+ // baseshape RShape;
+  RShape path;
   
   Cloud(int x, int y, float r, float fontscale,String word){
     this.x = x;
@@ -14,7 +16,8 @@ class Cloud{
     stroke(0);
     this.r = r;
     this.fontscale = fontscale;
-
+    path = new RShape();
+    path = path.createCircle(200,200,200);
   }
   
   
@@ -22,24 +25,31 @@ class Cloud{
     
     RCommand.setSegmentLength(15);
     RGroup grp = font.toGroup(word);
-    grp.translate(x,y);
-    grp.scale(fontscale);
-    grp.rotate(r);
+    //grp.translate(x,y);
+    //grp.scale(fontscale);
+    //grp.rotate(r);
+    fill(255,255,255,128);
+    grp.adapt(path);
+    grp.draw();
+   
+   
     
+    
+    /*
     RShape grpshape = grp.toShape();    
     grp = grp.toPolygonGroup();  
     RPoint[] clouddust = grp.getPoints();
     
     
     //  RCommand.setSegmentLength(mouseX/2+6);
-   /*for (int i=0; i < clouddust.length; i++) {
+   for (int i=0; i < clouddust.length; i++) {
        if (i%25 == 0) { 
          noStroke();
          fill(128,128);
          rect(clouddust[i].x-35,clouddust[i].y-35,70,70);
         }
      } 
-  */
+  
     stroke(255,0,100,50);
     //fill(255,0,100);
     noFill();
@@ -66,11 +76,15 @@ class Cloud{
     fill(255);
 
   //  RCommand.setSegmentLength(1);
-    fill(255,255,255,128);
-    stroke(0);
-   // for (int i=0; i < clouddust.length; i++) {
-     // ellipse(clouddust[i].x, clouddust[i].y,5, 5);      
-  //  }
+    //fill(255,255,255,128);
+    noFill();
+    stroke(255);
+    for (int i=0; i < clouddust.length; i++) {
+     ellipse(clouddust[i].x, clouddust[i].y,5, 5);    
+   
+     
+   }
+   */
 
   }
 }
