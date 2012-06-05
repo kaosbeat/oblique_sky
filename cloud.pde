@@ -3,35 +3,56 @@ class Cloud{
   int y;
   float r;
   float fontscale;
-  String word;
+  String phrase;
+  String[] words;
   float currentmeshpointX;
   float currentmeshpointY;
+  float stretch;
  // baseshape RShape;
   RShape path;
+  int fontsize;
   
-  Cloud(int x, int y, float r, float fontscale,String word){
+  
+  Cloud(int x, int y, float r, int fontsize,String phrase){
     this.x = x;
     this.y = y;
-    this.word = word;
+    this.phrase = phrase;
+    //words = new String[];
+    words = phrase.split(" ");
+    x = x-width/2;
+    y = y -height/2;
+    
     stroke(0);
     this.r = r;
-    this.fontscale = fontscale;
+    this.fontsize = fontsize;
+    
     path = new RShape();
-    path = path.createCircle(200,200,200);
+    
+    
+    path.addMoveTo(x,y);
+    println(x + ", " + y + "," + stretch + ", " + fontsize);
+   
+    //path = path.createCircle(x,200,200);
+    path.addLineTo(x + stretch/2 , y+fontsize);
+    path.addLineTo(x + stretch , y+fontsize);
+    //path.addBezierTo(x+20,y,x+40,y+20, x+30,y+10);
+    //path.addBezierTo(x+stretch,y-20,x+stretch+40,y+20, x+stretch+20,y+10);
   }
   
   
   void render(){
-    
+    stroke(255,255,0);
+    path.draw();
     RCommand.setSegmentLength(15);
-    RGroup grp = font.toGroup(word);
+    RGroup grp = font.toGroup(phrase);
+    font.draw(phrase);
     //grp.translate(x,y);
     //grp.scale(fontscale);
     //grp.rotate(r);
     fill(255,255,255,128);
     grp.adapt(path);
     grp.draw();
-   
+    
    
     
     
