@@ -32,14 +32,14 @@ void setup() {
   fill(0);
   stroke(128);
   line(0,0,100,100);
-  x = 30 - width/2;
-  y = fontsize + 30 - height/2; 
+  x = 30;
+  y = fontsize + 30 ; 
   cloudysky[0] = new Cloud(x,y,color(255),fontsize,ob[int(random(0,127))]);
   for (int i=1;i<times;i++) { 
    phrase = ob[int(random(0,127))];
    //if (cloudysky[i-1].x + phrase.length()*fontsize + 2*fontsize > width/2) {
-   if (cloudysky[i-1].x + phrase.length()*fontsize > width/2){
-     x = int(random(fontsize,3*fontsize)) - width/2;
+   if (cloudysky[i-1].x + phrase.length()*fontsize > width){
+     x = int(random(fontsize,3*fontsize));
      y = y + 6*fontsize;
    } else {
      println("values: " + cloudysky[i-1].x);
@@ -54,7 +54,7 @@ void setup() {
 void draw() {
   //beginRecord(PDF, "test.pdf");
     background(255);
-    translate(width/2-10,height/2+30);
+    //translate(width/2-10,height/2+30);
     
     for (int i=0;i<times;i++) {
       cloudysky[i].render();
