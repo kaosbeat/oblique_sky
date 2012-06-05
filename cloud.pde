@@ -20,23 +20,25 @@ class Cloud{
     //words = new String[];
     words = phrase.split(" ");
     x = x-width/2;
-    y = y -height/2;
-    
+    y = y-height/2;
     stroke(0);
     this.r = r;
     this.fontsize = fontsize;
-    
     path = new RShape();
-    
-    
     path.addMoveTo(x,y);
-    println(x + ", " + y + "," + stretch + ", " + fontsize);
-   
-    //path = path.createCircle(x,200,200);
-    path.addLineTo(x + stretch/2 , y+fontsize);
-    path.addLineTo(x + stretch , y+fontsize);
-    //path.addBezierTo(x+20,y,x+40,y+20, x+30,y+10);
-    //path.addBezierTo(x+stretch,y-20,x+stretch+40,y+20, x+stretch+20,y+10);
+     
+    for(int i = 0;i<words.length;i++){
+      stretch = words[i].length()*fontsize; 
+      x = x + int(stretch);
+      y = y+int(fontsize*random(-2,2));
+      path.addLineTo(x , y);
+      println(x + ", " + y + "," + stretch + ", " + fontsize);
+      
+
+      //path.addBezierTo(x+20,y,x+40,y+20, x+30,y+10);
+      //path.addBezierTo(x+stretch,y-20,x+stretch+40,y+20, x+stretch+20,y+10);
+    }  
+
   }
   
   
@@ -45,7 +47,7 @@ class Cloud{
     path.draw();
     RCommand.setSegmentLength(15);
     RGroup grp = font.toGroup(phrase);
-    font.draw(phrase);
+    //font.draw(phrase);
     //grp.translate(x,y);
     //grp.scale(fontscale);
     //grp.rotate(r);
@@ -56,20 +58,20 @@ class Cloud{
    
     
     
-    /*
+    
     RShape grpshape = grp.toShape();    
     grp = grp.toPolygonGroup();  
     RPoint[] clouddust = grp.getPoints();
     
     
     //  RCommand.setSegmentLength(mouseX/2+6);
-   for (int i=0; i < clouddust.length; i++) {
-       if (i%25 == 0) { 
-         noStroke();
-         fill(128,128);
-         rect(clouddust[i].x-35,clouddust[i].y-35,70,70);
-        }
-     } 
+   //for (int i=0; i < clouddust.length; i++) {
+     //  if (i%25 == 0) { 
+     //    noStroke();
+     //    fill(128,128);
+     //    rect(clouddust[i].x-35,clouddust[i].y-35,70,70);
+     //   }
+     //} 
   
     stroke(255,0,100,50);
     //fill(255,0,100);
@@ -93,6 +95,8 @@ class Cloud{
      
     }
     endShape();
+    
+    /*
     noStroke();
     fill(255);
 
