@@ -1,4 +1,5 @@
 class Cloud{
+  //import geomerative.RPoint;
   int x;
   int y;
   float r;
@@ -9,41 +10,50 @@ class Cloud{
   float currentmeshpointY;
   float stretch;
  // baseshape RShape;
-  RShape path;
+  RShape path, cloudpath;
   int fontsize;
+  int finalX;
+  color c;
+  List<RPoint> backbone = new ArrayList <RPoint>();;
   
   
-  Cloud(int x, int y, float r, int fontsize,String phrase){
+  Cloud(int x, int y, color c, int fontsize,String phrase){
     this.x = x;
     this.y = y;
+    this.c = c;
     this.phrase = phrase;
     //words = new String[];
     words = phrase.split(" ");
-    x = x-width/2;
-    y = y-height/2;
+    //x = x-width/2;
+    //y = y-height/2;
     stroke(0);
     this.r = r;
     this.fontsize = fontsize;
     path = new RShape();
-    path.addMoveTo(x,y);
-     
+    path.addMoveTo(this.x,this.y);
+    backbone.add(new RPoint(float(this.x),float(this.y)));
     for(int i = 0;i<words.length;i++){
       stretch = words[i].length()*fontsize; 
-      x = x + int(stretch);
-      y = y+int(fontsize*random(-2,2));
-      path.addLineTo(x , y);
-      println(x + ", " + y + "," + stretch + ", " + fontsize);
+      this.x = this.x + int(stretch);
+      this.y = this.y+int(fontsize*random(-2,2));
+      path.addLineTo(this.x , this.y);
+      backbone.add(new RPoint(float(this.x),float(this.y)));
       
-
+      //println(x + ", " + y + "," + stretch + ", " + fontsize);
       //path.addBezierTo(x+20,y,x+40,y+20, x+30,y+10);
       //path.addBezierTo(x+stretch,y-20,x+stretch+40,y+20, x+stretch+20,y+10);
     }  
-
+    ///now draw cloud around backbone
+    cloudpath = new RShape();
+    cloudpath.addMoveTo(x,y);
+    
+    
+    
   }
   
   
   void render(){
-    stroke(255,255,0);
+    stroke(c);
     path.draw();
     RCommand.setSegmentLength(15);
     RGroup grp = font.toGroup(phrase);

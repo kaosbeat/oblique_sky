@@ -127,6 +127,9 @@ void populateob(String[] ob) {
   ob[124]="Use an old idea";
   ob[125]="Destroy-nothing -the most important thing";
   ob[126]="Change nothing and continue with immaculate consistency";
+  //additions
+  
+  //ob[127]="What would McGuyver do?";
 
 }
 

@@ -8,33 +8,45 @@ boolean saved = false;
 Cloud[] cloudysky = new Cloud[127];
 RFont font;
 float counter = 0;
-int fontsize = 20;
+int fontsize =15;
+String phrase;
+int x,y,times;
 
 
 
 void setup() {
-    frameRate(10);
+   frameRate(10);
    String[] ob = new String[127];
    populateob(ob);
    println();
-   size(960,300,P3D);
+   size(1800,300,P3D);
    background(255);
    smooth();
-    
+   times = 10; 
   RG.init(this);
   font = new RFont("altehaasgroteskregular-webfont.ttf");
   font.setSize(fontsize);
   font.setAlign(RFont.LEFT);
    
-  noStroke();
+  //noStroke();
   fill(0);
-  cloudysky[0] = new Cloud(30,40,30,fontsize,ob[int(random(0,127))] );
-  //for (int i=0;i<10;i++) {
- //  float fontscale = random(0,1)*fontsize/10;
-  // fontscale = 1;
-   //cloudysky[i] = new Cloud(i*fontsize+int(random(0,127))-width/2,i*fontsize-height/2+50,0.1*i, fontsize, ob[int(random(0,127))] ); 
-  //}
-  
+  stroke(128);
+  line(0,0,100,100);
+  x = 30 - width/2;
+  y = fontsize + 30 - height/2; 
+  cloudysky[0] = new Cloud(x,y,color(255),fontsize,ob[int(random(0,127))]);
+  for (int i=1;i<times;i++) { 
+   phrase = ob[int(random(0,127))];
+   //if (cloudysky[i-1].x + phrase.length()*fontsize + 2*fontsize > width/2) {
+   if (cloudysky[i-1].x + phrase.length()*fontsize > width/2){
+     x = int(random(fontsize,3*fontsize)) - width/2;
+     y = y + 6*fontsize;
+   } else {
+     println("values: " + cloudysky[i-1].x);
+     x = cloudysky[i-1].x + int(random(fontsize,3*fontsize));
+   } 
+   cloudysky[i] = new Cloud(x,y,color(128 +i*18),fontsize,phrase);
+  }
 }
 
 
@@ -44,7 +56,7 @@ void draw() {
     background(0);
     translate(width/2-10,height/2+30);
     
-    for (int i=0;i<1;i++) {
+    for (int i=0;i<times;i++) {
       cloudysky[i].render();
     }
    // endRecord();
@@ -55,5 +67,5 @@ void draw() {
     saved = true;  
     } 
     
-    
+   // println( cloudysky[0].x);
 }
