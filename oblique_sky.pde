@@ -53,7 +53,7 @@ void setup() {
 
 void draw() {
   //beginRecord(PDF, "test.pdf");
-    background(0);
+    background(255);
     translate(width/2-10,height/2+30);
     
     for (int i=0;i<times;i++) {

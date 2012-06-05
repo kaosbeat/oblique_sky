@@ -45,10 +45,17 @@ class Cloud{
     }  
     ///now draw cloud around backbone
     cloudpath = new RShape();
-    cloudpath.addMoveTo(x,y);
-    
-    
-    
+    cloudpath.addMoveTo(backbone.get(0).x - fontsize*2 , backbone.get(0).y);
+    stroke(255,0,0);
+    fill(255,255,0);
+    for (int i = 0; i < backbone.size(); i++) {
+      cloudpath.addLineTo(backbone.get(i).x, backbone.get(i).y - fontsize*2 );
+    }
+    cloudpath.addLineTo(backbone.get(backbone.size()-1).x + fontsize*2 , backbone.get(backbone.size()-1).y);
+    for (int i = backbone.size(); i > 0; i--) {
+      cloudpath.addLineTo(backbone.get(i-1).x, backbone.get(i-1).y + fontsize*2 );
+    }
+     cloudpath.addLineTo(backbone.get(0).x - fontsize*2 , backbone.get(0).y);
   }
   
   
@@ -64,6 +71,7 @@ class Cloud{
     fill(255,255,255,128);
     grp.adapt(path);
     grp.draw();
+    cloudpath.draw();
     
    
     
