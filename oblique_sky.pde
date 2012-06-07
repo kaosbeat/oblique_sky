@@ -30,8 +30,7 @@ void setup() {
  font = new RFont("altehaasgroteskregular-webfont.ttf");
  font.setSize(fontsize);
  font.setAlign(RFont.LEFT);
- cloudysky[]
- for (int i=1;i<times;i++) { 
+  cloudysky[0] = new Cloud(x,y,color(255),fontsize,ob[int(random(0,127))]); for (int i=1;i<times;i++) { 
   phrase = ob[int(random(0,127))];
   //if (cloudysky[i-1].x + phrase.length()*fontsize + 2*fontsize > width/2) {
   if (cloudysky[i-1].x + phrase.length()*fontsize > width){
