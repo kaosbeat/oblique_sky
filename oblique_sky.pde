@@ -22,7 +22,7 @@ void setup() {
    size(1800,300,P3D);
    background(255);
    smooth();
-   times = 10; 
+   times = 1; 
   RG.init(this);
   font = new RFont("altehaasgroteskregular-webfont.ttf");
   font.setSize(fontsize);

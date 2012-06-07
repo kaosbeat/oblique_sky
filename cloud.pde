@@ -9,11 +9,11 @@ class Cloud{
   float currentmeshpointX;
   float currentmeshpointY;
   float stretch;
-  RShape path, cloudpath;
+  RShape path, cloudpath, Cpath;
   int fontsize;
   int finalX;
   color c;
-  List<RPoint> backbone = new ArrayList <RPoint>();;
+  List<RPoint> backbone = new ArrayList <RPoint>();
   
   
   Cloud(int x, int y, color c, int fontsize,String phrase){
@@ -40,8 +40,14 @@ class Cloud{
     cloudpath.addMoveTo(backbone.get(0).x - fontsize*2 , backbone.get(0).y);
     stroke(255,0,0);
     fill(255,255,0);
-    for (int i = 0; i < backbone.size(); i++) {
+    for (int i = 0; i < backbone.size()-1; i++) {
       cloudpath.addLineTo(backbone.get(i).x, backbone.get(i).y - fontsize*2 );
+      float interdistX = backbone.get(i+1).x - backbone.get(i).x;
+      float interdistY = backbone.get(i+1).y - backbone.get(i).y;
+      int bumps = int(noise(i*0.02)*5);
+        for (int j=0;j<bumps;j++) {
+          cloudpath.addLineTo(backbone.get(i+1).x + interdistX/bumps*(j+1) , backbone.get(i).y - fontsize*2*i/(j+1)  );
+        }
     }
     cloudpath.addLineTo(backbone.get(backbone.size()-1).x + fontsize*2 , backbone.get(backbone.size()-1).y);
     for (int i = backbone.size(); i > 0; i--) {
@@ -49,14 +55,21 @@ class Cloud{
     }
      cloudpath.addLineTo(backbone.get(0).x - fontsize*2 , backbone.get(0).y);
     ///done cacluating cloud
+    
+    
+    
   }
   
-  void drawTris(){
+  
+
+  
+  void drawTris(RGroup textgrp){
+    pushMatrix();
+    //translate(100,100);
     RCommand.setSegmentLength(15);
-    RGroup clouddustgrp = font.toGroup(phrase);
-    //RShape clouddustgrp = clouddustgrp.toShape();    
-    clouddustgrp = clouddustgrp.toPolygonGroup();  
-    RPoint[] clouddust = clouddustgrp.getPoints();
+    //RShape clouddustgrp = textgrp.toShape();    
+    textgrp = textgrp.toPolygonGroup();  
+    RPoint[] clouddust = textgrp.getPoints();
     beginShape(TRIANGLE_STRIP);
     for (int i=0; i < clouddust.length; i++) {
      vertex(clouddust[i].x, clouddust[i].y);
@@ -71,56 +84,42 @@ class Cloud{
      vertex(currentmeshpointX, currentmeshpointY);
     }
     endShape();
+    popMatrix();
   }
   
   void render(){
-    stroke(255,0,0);
-    fill(0,0,255,15);
+    stroke(131,175,155,128);
+    fill(249,205,173,15);
     cloudpath.draw();
-    noFill();
+    //noFill();
     path.draw();
+    ///draw clouds
+    pushMatrix();
+    Cpath = new RShape(cloudpath);
+    for (int i = 0; i<10; i++) {
+      Cpath.
+      translate(0,10-i);
+      stroke(254,67,101,128-i*5);
+      Cpath.draw();  
+    }
+    popMatrix();
+    
     RCommand.setSegmentLength(1);
     RGroup textgrp = font.toGroup(phrase);
-    stroke(0,255,0,0);
-    stroke(255,0,100,50);
+    //stroke(0,255,0,0);
+    stroke(131,175,155,15);
     noFill();
-    drawTris();
     
     ///draw text
     textgrp.adapt(path);
-    fill(255,15,36);
+    drawTris(textgrp);
+    fill(131,175,155);
     textgrp.draw();
+    
+    
+    
 
   }
 }
 
-
-
-
-
-    
-    /*
-    noStroke();
-    fill(255);
-
-    //  RCommand.setSegmentLength(1);
-    //fill(255,255,255,128);
-    noFill();
-    stroke(255);
-    for (int i=0; i < clouddust.length; i++) {
-     ellipse(clouddust[i].x, clouddust[i].y,5, 5);    
-   
-     
-   }
-       
-    
-    //  RCommand.setSegmentLength(mouseX/2+6);
-   //for (int i=0; i < clouddust.length; i++) {
-     //  if (i%25 == 0) { 
-     //    noStroke();
-     //    fill(128,128);
-     //    rect(clouddust[i].x-35,clouddust[i].y-35,70,70);
-     //   }
-     //} 
-   
-   */
+  
