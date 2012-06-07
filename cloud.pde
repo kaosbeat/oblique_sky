@@ -1,7 +1,7 @@
 class Cloud{
   //import geomerative.RPoint;
-  int x;
-  int y;
+  float x;
+  float y;
   float r;
   float fontscale;
   String phrase;
@@ -16,7 +16,7 @@ class Cloud{
   List<RPoint> backbone = new ArrayList <RPoint>();
   
   
-  Cloud(int x, int y, color c, int fontsize,String phrase){
+  Cloud(float x, float y, color c, int fontsize,String phrase){
     this.x = x;
     this.y = y;
     this.c = c;
@@ -28,13 +28,13 @@ class Cloud{
     path = new RShape();
     path.addMoveTo(this.x,this.y);
     
-    backbone.add(new RPoint(float(this.x),float(this.y)));
+    backbone.add(new RPoint(this.x,this.y));
     for(int i = 0;i<words.length;i++){
       stretch = words[i].length()*fontsize; 
       this.x = this.x + int(stretch);
-      this.y = this.y+int(fontsize*random(-2,2));
+      this.y = this.y+fontsize*random(-2,2);
       path.addLineTo(this.x , this.y);
-      backbone.add(new RPoint(float(this.x),float(this.y)));
+      backbone.add(new RPoint(this.x,this.y));
     }  
     
     ///now calculate cloud around backbone
@@ -61,7 +61,17 @@ class Cloud{
     float cpy = backbone.get(backbone.size()-1).y;
     cloudpath.addBezierTo(cpx +random(-10,0),cpy + random(-10,0),cpx + random(0,10), cpy + random(0,10),backbone.get(backbone.size()-1).x + fontsize*2 , backbone.get(backbone.size()-1).y);
     for (int i = backbone.size(); i > 0; i--) {
-      cloudpath.addLineTo(backbone.get(i-1).x, backbone.get(i-1).y + fontsize*2 );
+      //cloudpath.addLineTo(backbone.get(i-1).x, backbone.get(i-1).y + fontsize*2 );
+      float px = backbone.get(i-1).x;
+      float py = backbone.get(i-1).y + fontsize*5;
+      float c1x = px - random(-100,0);
+      float c1y = py - random(-100,0);
+      float c2x = px - random(0,100);
+      float c2y = py - random(0,100);
+      cloudpath.addBezierTo(c1x,c1y,c2x,c2y,px,py);
+      float interdistX = backbone.get(i-1).x - backbone.get(i-1).x;
+      float interdistY = backbone.get(i-1).y - backbone.get(i-1).y;
+      int bumps = int(noise(i*0.02)*5);
     }
      cloudpath.addLineTo(backbone.get(0).x - fontsize*2 , backbone.get(0).y);
     ///done cacluating cloud
@@ -107,7 +117,7 @@ class Cloud{
     pushMatrix();
     Cpath = new RShape(cloudpath);
     noStroke();
-    stroke(0);
+    //stroke(0);
     for (int i = 0; i<10; i++) {
       //Cpath.
       translate(0,10-i);
@@ -127,7 +137,7 @@ class Cloud{
     //drawTris(textgrp);
     fill(131,175,155);
     pushMatrix();
-    translate(0,fontsize*3);
+    translate(0,fontsize*5);
     textgrp.draw();
     popMatrix();
     
