@@ -13,6 +13,7 @@ String phrase;
 float x,y;
 int times;
 color cloudCol, liningCol, textCol, b1, b2;
+boolean curved = false;
 
 
 void setup() {
@@ -21,9 +22,9 @@ void setup() {
  populateob(ob);
   size(1800,600,P3D);
  background(255);
- cloudCol = color(240,240,175,87);
- liningCol = color(51,39,23);
- textCol = color(255,55,15);
+ cloudCol = color(236,208,120,255);
+ liningCol = color(84,36,55);
+ textCol = color(83,119,122);
  b1 = color(157,188,188,255);
  b2 = color(157,188,188,255);
  smooth();
@@ -51,7 +52,7 @@ void setup() {
 
 void draw() {
   //beginRecord(PDF, "test.pdf");
-    background(255);
+    background(192,41,66);
     //setGradient(0, 0, width, height, b1, b2, 1);
     //translate(width/2-10,height/2+30);
     
