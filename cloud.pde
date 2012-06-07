@@ -116,7 +116,7 @@ class Cloud{
     Cpath = new RShape(cloudpath);
     for (int i = 0; i<10; i++) {
       translate(0,10-i);
-      stroke(red(liningCol),green(liningCol),blue(liningCol),alpha(liningCol)-i*5);
+      stroke(red(liningCol),green(liningCol),blue(liningCol),alpha(liningCol)-i*15);
       println();
       fill(red(cloudCol),green(cloudCol),blue(cloudCol),alpha(cloudCol)-i*5);
       Cpath.draw();  

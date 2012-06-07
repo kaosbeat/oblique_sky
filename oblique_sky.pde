@@ -12,7 +12,7 @@ int fontsize =15;
 String phrase;
 float x,y;
 int times;
-color cloudCol, liningCol, textCol;
+color cloudCol, liningCol, textCol, b1, b2;
 
 
 void setup() {
@@ -21,9 +21,11 @@ void setup() {
  populateob(ob);
   size(1800,600,P3D);
  background(255);
- cloudCol = color(125,32,65,87);
- liningCol = color(0);
- textCol = color(152,44,45);
+ cloudCol = color(240,240,175,87);
+ liningCol = color(51,39,23);
+ textCol = color(255,55,15);
+ b1 = color(157,188,188,255);
+ b2 = color(157,188,188,255);
  smooth();
  times = 10; 
  RG.init(this);
@@ -50,6 +52,7 @@ void setup() {
 void draw() {
   //beginRecord(PDF, "test.pdf");
     background(255);
+    //setGradient(0, 0, width, height, b1, b2, 1);
     //translate(width/2-10,height/2+30);
     
     for (int i=0;i<times;i++) {
