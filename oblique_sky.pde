@@ -19,10 +19,10 @@ void setup() {
    String[] ob = new String[127];
    populateob(ob);
    println();
-   size(1800,300,P3D);
+   size(1800,600,P3D);
    background(255);
    smooth();
-   times = 1; 
+   times = 10; 
   RG.init(this);
   font = new RFont("altehaasgroteskregular-webfont.ttf");
   font.setSize(fontsize);
@@ -39,11 +39,12 @@ void setup() {
    phrase = ob[int(random(0,127))];
    //if (cloudysky[i-1].x + phrase.length()*fontsize + 2*fontsize > width/2) {
    if (cloudysky[i-1].x + phrase.length()*fontsize > width){
-     x = int(random(fontsize,3*fontsize));
-     y = y + 6*fontsize;
+     x = int(random(5*fontsize,8*fontsize));
+     y = y + 10*fontsize;
    } else {
-     println("values: " + cloudysky[i-1].x);
-     x = cloudysky[i-1].x + int(random(fontsize,3*fontsize));
+     //println("values: " + cloudysky[i-1].x);
+     x = cloudysky[i-1].x + int(random(5*fontsize,8*fontsize));
+     y = y + int(random(-3*fontsize,3*fontsize));
    } 
    cloudysky[i] = new Cloud(x,y,color(128 +i*18),fontsize,phrase);
   }
