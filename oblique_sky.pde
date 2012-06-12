@@ -54,7 +54,7 @@ void setup() {
 
 void draw() {
   //beginRecord(PDF, "test.pdf");
-    background(192,41,66);
+    background(255);
     //setGradient(0, 0, width, height, b1, b2, 1);
     //translate(width/2-10,height/2+30);
     
@@ -64,11 +64,10 @@ void draw() {
    // endRecord();
     if (saved == false) { 
     Date d = new Date();
-    save("obliquesky"+d.getTime()+".png");
+    long datum = d.getTime();
+    save("obliquesky"+datum+".png");
     //String[] params = { "git", "commit", "-a", "-m", "automatic commit at " + datum };
-    //String[] params = {"open" , "."};
-    //open(params);
-
+    String[] params = {"git", "commit", "/Users/kaos/Documents/Processing/oblique_sky/*.pde",  "-m", "automatic commit at " + datum };
     saved = true;  
     } 
     
