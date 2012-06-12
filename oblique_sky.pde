@@ -45,7 +45,7 @@ void setup() {
   } else {
    //println("values: " + cloudysky[i-1].x);
    x = cloudysky[i-1].x + random(5*fontsize,8*fontsize);
-   y = y + random(-3*fontsize,3*fontsize);
+   y = y ;//+ random(-3*fontsize,3*fontsize);
   } 
    cloudysky[i] = new Cloud(x,y,color(128 +i*18),fontsize,phrase);
   }

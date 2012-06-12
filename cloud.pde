@@ -32,7 +32,7 @@ class Cloud{
     for(int i = 0;i<words.length;i++){
       stretch = words[i].length()*fontsize; 
       this.x = this.x + int(stretch);
-      this.y = this.y+fontsize*random(-2,2);
+      this.y = this.y+fontsize*random(-1.3,1.3);
       path.addLineTo(this.x , this.y);
       backbone.add(new RPoint(this.x,this.y));
     }  
