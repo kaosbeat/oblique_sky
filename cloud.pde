@@ -55,14 +55,12 @@ class Cloud{
         int bumps = int(noise(i*0.02)*5);  
         cloudpath.addLineTo(backbone.get(i).x, backbone.get(i).y - fontsize*2 );  
         for(int j=0;j<bumps;j++) {
-          //cloudpath.addLineTo(backbone.get(i+1).x + interdistX/bumps*(j+1) , backbone.get(i).y - fontsize*i/(j+1) );//+ fontsize*2*j/(j+1) );
-          cloudpath.addLineTo(backbone.get(i+1).x + random(0,interdistX/bumps) , backbone.get(i).y - random(0,interdistY/bumps*5));//+ fontsize*2*j/(j+1) );
+          cloudpath.addLineTo(backbone.get(i+1).x + interdistX/bumps*(j+1) , backbone.get(i).y - fontsize*i/(j+1) );//+ fontsize*2*j/(j+1) );
         }
+      cloudpath.addLineTo(backbone.get(backbone.size()-1).x + fontsize*2 , backbone.get(backbone.size()-1).y);
       }
     }
-    if (curved == false) {
-        cloudpath.addLineTo(backbone.get(backbone.size()-1).x + fontsize*2 , backbone.get(backbone.size()-1).y);
-    } else {
+    if (curved == true) {
       float cpx = backbone.get(backbone.size()-1).x;
       float cpy = backbone.get(backbone.size()-1).y;
       cloudpath.addBezierTo(cpx +random(-10,0),cpy + random(-10,0),cpx + random(0,10), cpy + random(0,10),backbone.get(backbone.size()-1).x + fontsize*2 , backbone.get(backbone.size()-1).y);
@@ -92,7 +90,7 @@ class Cloud{
   
   void drawTris(RGroup textgrp){
     pushMatrix();
-    //translate(100,100);
+    //translate(0,5*fontsize);
     RCommand.setSegmentLength(15);
     //RShape clouddustgrp = textgrp.toShape();    
     textgrp = textgrp.toPolygonGroup();  
@@ -114,35 +112,39 @@ class Cloud{
     popMatrix();
   }
   
-  void render(){
-    //cloudpath.draw();
-    //noFill();
-    //path.draw();
-    ///draw clouds
-    /*
+  void drawclouds(int clouds) {
     pushMatrix();
     Cpath = new RShape(cloudpath);
-    for (int i = 0; i<10; i++) {
-      translate(1,0-i);
+    for (int i = 0; i<clouds; i++) {
+      translate(0,clouds-i);
       stroke(red(liningCol),green(liningCol),blue(liningCol),alpha(liningCol)-i*15);
+      println();
       fill(red(cloudCol),green(cloudCol),blue(cloudCol),alpha(cloudCol)-i*5);
       Cpath.draw();  
     }
-    popMatrix();
-    */
+    popMatrix();   
+  }
+  
+  
+  void render(){
+    //cloudpath.draw();
+    noFill();
+    stroke(red(backboneCol),green(backboneCol),blue(backboneCol),alpha(backboneCol));
+    path.draw();
+    //drawclouds(10);
     RCommand.setSegmentLength(1);
     RGroup textgrp = font.toGroup(phrase);
     noFill();
     ///draw text
     textgrp.adapt(path);
-    stroke(red(liningCol),green(liningCol),blue(liningCol),alpha(liningCol));
-    //drawTris(textgrp);
+    stroke(red(trisCol),green(trisCol),blue(trisCol),alpha(trisCol));
+    drawTris(textgrp);
     noStroke();
     fill(red(textCol),green(textCol),blue(textCol),alpha(textCol));
-    pushMatrix();
-    translate(0,fontsize);
+    //pushMatrix();
+    //translate(0,fontsize*5);
     textgrp.draw();
-    popMatrix();
+    //popMatrix();
     
     
 
