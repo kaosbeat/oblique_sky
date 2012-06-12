@@ -7,7 +7,7 @@ boolean saved = false;
 Cloud[] cloudysky = new Cloud[127];
 RFont font;
 float counter = 0;
-int fontsize =35;
+int fontsize = 15 ;
 String phrase;
 float x,y;
 int times;
@@ -19,7 +19,7 @@ void setup() {
  frameRate(10);
  String[] ob = new String[127];
  populateob(ob);
-  size(18000,1800,P3D);
+  size(900,300,P3D);
  background(255);
  cloudCol = color(236,208,120,255);
  liningCol = color(84,36,55);
@@ -27,7 +27,7 @@ void setup() {
  b1 = color(157,188,188,255);
  b2 = color(157,188,188,255);
  smooth();
- times = 110; 
+ times = 10; 
  RG.init(this);
  font = new RFont("altehaasgroteskregular-webfont.ttf");
  font.setSize(fontsize);
