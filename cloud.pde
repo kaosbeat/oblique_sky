@@ -119,22 +119,24 @@ class Cloud{
     //noFill();
     //path.draw();
     ///draw clouds
+    /*
     pushMatrix();
     Cpath = new RShape(cloudpath);
     for (int i = 0; i<10; i++) {
       translate(1,0-i);
       stroke(red(liningCol),green(liningCol),blue(liningCol),alpha(liningCol)-i*15);
-      println();
       fill(red(cloudCol),green(cloudCol),blue(cloudCol),alpha(cloudCol)-i*5);
       Cpath.draw();  
     }
     popMatrix();
+    */
     RCommand.setSegmentLength(1);
     RGroup textgrp = font.toGroup(phrase);
     noFill();
     ///draw text
     textgrp.adapt(path);
-    drawTris(textgrp);
+    stroke(red(liningCol),green(liningCol),blue(liningCol),alpha(liningCol));
+    //drawTris(textgrp);
     noStroke();
     fill(red(textCol),green(textCol),blue(textCol),alpha(textCol));
     pushMatrix();

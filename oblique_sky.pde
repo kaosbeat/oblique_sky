@@ -56,7 +56,7 @@ void setup() {
 
 void draw() {
   //beginRecord(PDF, "test.pdf");
-    background(192,41,66);
+    //background(192,41,66);
     background(255,0);
     //setGradient(0, 0, width, height, b1, b2, 1);
     //translate(width/2-10,height/2+30);
@@ -69,8 +69,8 @@ void draw() {
     Date d = new Date();
     long datum = d.getTime();
     save("obliquesky"+datum+".png");
-    //String[] params = { "git", "commit", "-a", "-m", toString("automatic commit at " + datum )};
-    //open(params);
+    String[] params = { "git", "commit", "-a", "-m", "automatic commit at " + datum };
+    open(params);
     
     saved = true;  
     } 
