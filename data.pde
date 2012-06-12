@@ -30,7 +30,7 @@ void populateob(String[] ob) {
   ob[27]="Dont be frightened to display your talents";
   ob[28]="Breathe more deeply";
   ob[29]="Honor thy error as a hidden intention";
-  ob[30]="What are the sections sections of?Imagine a caterpillar moving";
+  ob[30]="What are the sections sections of? Imagine a caterpillar moving";
   ob[31]="Only one element of each kind";
   ob[32]="Is there something missing";
   ob[33]="Use 'unqualified' people";
@@ -79,7 +79,7 @@ void populateob(String[] ob) {
   ob[76]="Feed the recording back out of the medium";
   ob[77]="Convert a melodic element into a rhythmic element";
   ob[78]="The most important thing is the thing most easily forgotten";
-  ob[79]="";
+  ob[79]="_";
   ob[80]="Ghost echoes";
   ob[81]="You can only make one dot at a time";
   ob[82]="Just carry on";

@@ -127,6 +127,8 @@ class Cloud{
   
   
   void render(){
+    pushMatrix();
+    translate(0,5*fontsize);
     //cloudpath.draw();
     noFill();
     stroke(red(backboneCol),green(backboneCol),blue(backboneCol),alpha(backboneCol));
@@ -145,7 +147,7 @@ class Cloud{
     //translate(0,fontsize*5);
     textgrp.draw();
     //popMatrix();
-    
+    popMatrix();
     
 
   }
