@@ -134,7 +134,7 @@ class Cloud{
     noFill();
     ///draw text
     textgrp.adapt(path);
-    //drawTris(textgrp);
+    drawTris(textgrp);
     noStroke();
     fill(red(textCol),green(textCol),blue(textCol),alpha(textCol));
     pushMatrix();
