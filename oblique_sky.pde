@@ -8,7 +8,8 @@ boolean saved = false;
 Cloud[] cloudysky = new Cloud[127];
 RFont font;
 float counter = 0;
-int fontsize = 15;
+int fontsize = 55;
+float fontkerning = 0.6;
 String phrase;
 float x,y;
 int times;
@@ -20,19 +21,21 @@ void setup() {
  frameRate(10);
  String[] ob = new String[127];
  populateob(ob);
-  size(1900,400,P3D);
+  size(19000,2500,P3D);
  background(255);
  cloudCol = color(236,208,120,255);
  liningCol = color(84,36,55);
- textCol = color(83,119,122);
- trisCol = color(84,36,55,50);
- backboneCol = color(255,255,0,128);
+ textCol = color(45,135,46);
+ trisCol = color(26,172,208,50);
+ backboneCol = color(232,191,0,255);
  b1 = color(157,188,188,255);
  b2 = color(157,188,188,255);
  smooth();
  times = 127; 
  RG.init(this);
- font = new RFont("altehaasgroteskregular-webfont.ttf");
+ //font = new RFont("altehaasgroteskregular-webfont.ttf");
+ //font = new RFont("FUTRFW.TTF");
+ font = new RFont("wendy.ttf");
  font.setSize(fontsize);
  font.setAlign(RFont.LEFT);
  cloudysky[0] = new Cloud(x,y,color(255),fontsize,ob[0]); 
@@ -60,8 +63,8 @@ void draw() {
     //translate(width/2-10,height/2+30);
     
     for (int i=0;i<times-1;i++) {
-      println("render " + i);
-      cloudysky[i].render();
+     // println("render " + i);
+     cloudysky[i].render();
     }
    // endRecord();
     if (saved == false) { 
@@ -69,7 +72,7 @@ void draw() {
     long datum = d.getTime();
     save("obliquesky"+datum+".png");
     //String[] params = { "git", "commit", "-a", "-m", "automatic commit at " + datum };
-    String[] params = {"git", "commit", "/Users/kaos/Documents/Processing/oblique_sky/*.pde",  "-m", "automatic commit at " + datum };
+   // String[] params = {"git", "commit", "/Users/kaos/Documents/Processing/oblique_sky/*.pde",  "-m", "automatic commit at " + datum };
     saved = true;  
     } 
     
